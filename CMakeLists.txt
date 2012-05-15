@@ -44,7 +44,7 @@ endif(NOT EXISTS "${CMAKE_SOURCE_DIR}/tclap/include")
 ## BUILD OPTIONS (configuration, libraries)
 
 configure_file(inventory_constants.h.in "${CMAKE_BINARY_DIR}/inventory_constants.h")
-configure_file(inventory_qt_interface.ui "${CMAKE_BINARY_DIR}/inventory_qt_interface.ui")
+configure_file(inventory_qt_interface.ui.in "${CMAKE_BINARY_DIR}/inventory_qt_interface.ui")
 include_directories("${CMAKE_SOURCE_DIR}/tclap/include")
 set(QT_MIN_VERSION 4.8.0)
 set(QT_COMPONENTS "QtCore ; QtGui")
