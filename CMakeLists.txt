@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.0 FATAL_ERROR)
 project(Inventory C CXX)
 
-## BUILD SETUP
+## SETUP
 
 # Force a build type to be declared
 set(CMAKE_BUILD_TYPES "(None|Debug|Release|RelWithDebInfo|MinSizeRel)")
@@ -41,20 +41,23 @@ if(NOT EXISTS "${CMAKE_SOURCE_DIR}/tclap/include")
   message("From ${CMAKE_SOURCE_DIR}, run: git submodule update --init")
 endif(NOT EXISTS "${CMAKE_SOURCE_DIR}/tclap/include")
 
-## BUILD OPTIONS (configuration, libraries)
+## CONFIGURATION
 
 configure_file(inventory_constants.h.in "${CMAKE_BINARY_DIR}/inventory_constants.h")
 configure_file(inventory_qt_interface.ui.in "${CMAKE_BINARY_DIR}/inventory_qt_interface.ui")
 include_directories("${CMAKE_SOURCE_DIR}/tclap/include")
 set(QT_MIN_VERSION 4.6.2)
-set(QT_COMPONENTS "QtCore ; QtGui")
+list(APPEND QT_COMPONENTS "QtCore")
+list(APPEND QT_COMPONENTS "QtGui")
+if(BUILD_TESTING)
+  list(APPEND QT_COMPONENTS "QtTest")
+endif(BUILD_TESTING)
+find_package(Qt4 ${QT_MIN_VERSION} COMPONENTS ${QT_COMPONENTS} REQUIRED)
 set(QT_DONT_USE_QTCORE FALSE)
 set(QT_DONT_USE_QTGUI FALSE)
 if(BUILD_TESTING)
-  list(APPEND QT_COMPONENTS "QtTest")
   set(QT_USE_QTTESTING TRUE)
 endif(BUILD_TESTING)
-find_package(Qt4 ${QT_MIN_VERSION} COMPONENTS ${QT_COMPONENTS} REQUIRED)
 include("${QT_USE_FILE}")
 include_directories("${QT_INCLUDE_DIR}")
 
