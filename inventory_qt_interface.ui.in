@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Inventory</string>
+   <string>@PRODUCT_NAME@ @VERSION_STRING@</string>
   </property>
   <widget class="QWidget" name="container">
    <layout class="QVBoxLayout" name="verticalLayout">
