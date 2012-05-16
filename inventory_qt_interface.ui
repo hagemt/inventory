@@ -10,9 +10,6 @@
     <height>480</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>@PRODUCT_NAME@ @VERSION_STRING@</string>
-  </property>
   <widget class="QWidget" name="container">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>

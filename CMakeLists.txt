@@ -44,7 +44,6 @@ endif(NOT EXISTS "${CMAKE_SOURCE_DIR}/tclap/include")
 ## CONFIGURATION
 
 configure_file(inventory_constants.h.in "${CMAKE_BINARY_DIR}/inventory_constants.h")
-configure_file(inventory_qt_interface.ui.in "${CMAKE_BINARY_DIR}/inventory_qt_interface.ui")
 include_directories("${CMAKE_SOURCE_DIR}/tclap/include")
 set(QT_MIN_VERSION 4.6.2)
 list(APPEND QT_COMPONENTS "QtCore")
@@ -66,14 +65,14 @@ include_directories("${QT_INCLUDE_DIR}")
 # Source, headers to moc, UI, and resource files need prep
 set(inventory_qt_interface_HEADERS inventory_qt_interface.h)
 set(inventory_qt_interface_SOURCES inventory_qt_interface.cpp)
-set(inventory_qt_interface_UI "${CMAKE_BINARY_DIR}/inventory_qt_interface.ui")
+set(inventory_qt_interface_UI inventory_qt_interface.ui)
 set(inventory_qt_interface_QRC inventory_qt_interface.qrc)
 # Prepare each type of code
-qt4_wrap_cpp(inventory_qt_interface_MOC_SOURCES ${lirch_qt_interface_HEADERS})
-qt4_wrap_ui(inventory_qt_interface_UI_SOURCES ${lirch_qt_interface_UI})
-qt4_add_resources(inventory_qt_interface_QRC_SOURCES ${lirch_qt_interface_QRC})
+qt4_wrap_cpp(inventory_qt_interface_MOC_SOURCES ${inventory_qt_interface_HEADERS})
+qt4_wrap_ui(inventory_qt_interface_UI_SOURCES ${inventory_qt_interface_UI})
+qt4_add_resources(inventory_qt_interface_QRC_SOURCES ${inventory_qt_interface_QRC})
 # Add details for this target
-add_executable(inventory
+add_executable(inventory main.cpp
         ${inventory_qt_interface_SOURCES}
 	${inventory_qt_interface_MOC_SOURCES}
 	${inventory_qt_interface_UI_SOURCES}

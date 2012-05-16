@@ -25,17 +25,17 @@ void parse_args(int &argc, char *argv[]) {
 		TCLAP::SwitchArg verbose_switch("v", "verbose",
 			"Enable loud output (all messages)", options, false);
 		// We're allowed exactly one of these:
-		TCLAP::UnlabeledMultiArg<string> remainder("files",
+		TCLAP::UnlabeledMultiArg<std::string> remainder("files",
 			"Names of data files to load", false,
 			"data_file", "string (path)");
-                options.add(data_files);
+                options.add(remainder);
 		// Parse all the options, and fill in session
 		options.parse(argc, argv);
 		session_data.verbose_mode = verbose_switch.getValue();
 		session_data.data_files = remainder.getValue();
 		// And catch all exceptions
 	} catch (TCLAP::ArgException &e) {
-		cerr << e.error() << endl;
+		std::cerr << e.error() << std::endl;
 	}
 }
 
@@ -45,6 +45,6 @@ int main(int argc, char *argv[]) {
 	QApplication application(argc, argv);
 	setlocale(LC_NUMERIC, "C");
 	InventoryQtInterface main_window;
-	//connect(&application, SIGNAL(started()), &main_window, SLOT(show()));
+	main_window.show();
 	return application.exec();
 }
