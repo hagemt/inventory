@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Poll Index</title>
+  </head>
+  <body>
+    <h1>Recent Polls:</h1>
+    {% if latest_poll_list %}
+    <ul>
+      {% for poll in latest_poll_list %}
+      <li><a href="{{ poll.id }}/">{{ poll.question }}</a> <a href="{{ poll.id }}/results/">(see results)</a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No polls are available.</p>
+    {% endif %}
+  </body>
+</html>
+
