@@ -1,0 +1,13 @@
+#ifndef INVENTORY_CONSTANTS_H
+#define INVENTORY_CONSTANTS_H
+
+// GLOBALS && CORE
+
+#define VERSION_STRING  "v@VERSION_STRING@"
+#define BUILD_HASH      "@BUILD_HASH@"
+
+#define COMPANY_NAME    "onetooneandon.to"
+#define PRODUCT_NAME    "inventory"
+#define COPYRIGHT_YEAR  "2012"
+
+#endif // INVENTORY_CONSTANTS_H
